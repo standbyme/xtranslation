@@ -14,4 +14,16 @@ describe('Xtranslation Who', function () {
         assert.equal(example.job.get(), '副总经理')
         assert.equal(example.org.get(), '青鸟盛地')
     })
+
+    it('basic test', async function () {
+        const mock = {
+            para: '外交部长王毅在北京与印尼外长蕾特诺共同会见记者'
+        }
+        const result = await who(mock)
+        assert.equal(result.length, 2)
+        const example = result[0]
+        assert.equal(example.name, '王毅')
+        assert.equal(example.job.get(), '外交部长')
+        assert(example.org.isEmpty())
+    })
 })
